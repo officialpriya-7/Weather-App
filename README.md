@@ -95,7 +95,7 @@ project-folder/
 └── favicon.png
 
 
----
+```
 
 ## API Setup (OpenWeather API)
 

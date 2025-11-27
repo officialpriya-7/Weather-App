@@ -20,3 +20,24 @@ const recentToggle = document.getElementById("recentToggle"); // ⬅️ NEW
 
 let isF = false;
 let lastData = null;
+
+function showUIMessage(text = "", timeout = 3500) {
+  if (!uiMessage) return;
+  uiMessageText.textContent = text;
+  uiMessage.classList.remove("hidden");
+  clearTimeout(window._uiMsgTimer);
+  if (timeout > 0) window._uiMsgTimer = setTimeout(() => uiMessage.classList.add("hidden"), timeout);
+}
+if (uiMessageClose) uiMessageClose.addEventListener("click", () => uiMessage.classList.add("hidden"));
+
+function showExtremeAlert(txt) {
+  if (!extremeAlert) return;
+  extremeText.textContent = txt;
+  extremeAlert.classList.remove("hidden");
+}
+function hideExtremeAlert() {
+  if (!extremeAlert) return;
+  extremeAlert.classList.add("hidden");
+}
+if (extremeClose) extremeClose.addEventListener("click", hideExtremeAlert);
+

@@ -130,3 +130,28 @@ function getWeatherIcon(cond) {
   if (cond.includes("cloud")) return "bi bi-clouds";
   return "bi bi-brightness-high";
 }
+
+function setBgForCondition(cond) {
+  weatherBg.classList.remove(
+    "sunny","clear","clouds","rain","drezzle","snow","thunder",
+    "storm","fog","haze","mist","smoke","drizzle","sunnuy"
+  );
+
+  if (!cond) return;
+  const c = String(cond).toLowerCase();
+
+  if (c.includes("rain")) weatherBg.classList.add("rain");
+  else if (c.includes("snow")) weatherBg.classList.add("snow");
+  else if (c.includes("cloud")) weatherBg.classList.add("clouds");
+  else if (c.includes("clear")) weatherBg.classList.add("clear");
+  else if (c.includes("thunder")) weatherBg.classList.add("thunder");
+  else if (c.includes("storm")) weatherBg.classList.add("storm");
+  else if (c.includes("fog")) weatherBg.classList.add("fog");
+  else if (c.includes("mist")) weatherBg.classList.add("mist");
+  else if (c.includes("haze")) weatherBg.classList.add("haze");
+  else if (c.includes("smoke")) weatherBg.classList.add("smoke");
+  else if (c.includes("drizzle")) weatherBg.classList.add("drizzle");
+  else if (c.includes("sunny")) weatherBg.classList.add("sunnuy");
+}
+
+

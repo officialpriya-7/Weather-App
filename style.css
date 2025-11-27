@@ -95,3 +95,39 @@ card {
 .recent-toggle-icon:hover {
   opacity: 1;
 }
+
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 6px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.btn { padding: 10px 12px; border-radius: 10px; border: none; cursor: pointer; background: rgba(255,255,255,0.06); color: #fff; transition: transform .08s ease, background .12s ease; }
+.btn.primary { background: linear-gradient(90deg,#2f9bff,#2f6bff); box-shadow: 0 8px 20px rgba(47,107,255,0.12); }
+.btn:hover { transform: translateY(-2px); background-color: rgba(7, 7, 86, 0.325);}
+.loc-btn { display: inline-flex; align-items:center; gap:8px; }
+
+
+.unit-toggle { display: inline-flex; align-items: center; gap:8px; padding-left: 6px; }
+.unit-toggle input { width: 0; height: 0; opacity: 0; }
+.unit-toggle span { background: rgba(255,255,255,0.06); padding: 6px 8px; border-radius: 10px; font-weight:600; }
+
+
+.current-weather {
+  display: flex;
+  gap: 12px;
+  border: 1px solid black;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.323), rgba(255,255,255,0.01));
+  padding: 14px;
+  border-radius: 12px;
+  color: #fff;
+    box-shadow: 0 12px 40px rgba(239, 238, 238, 0.586);
+}
+
+.current-left { flex: 1; text-align: left; }
+.current-right { min-width: 130px; text-align: right; }

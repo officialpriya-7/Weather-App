@@ -114,3 +114,19 @@ unitToggle.addEventListener("change", () => {
   if (lastData) renderCurrent(lastData);
 });
 
+function getWeatherIcon(cond) {
+  cond = cond.toLowerCase();
+  if (cond.includes("thunder")) return "bi bi-lightning";
+  if (cond.includes("storm")) return "bi bi-hurricane";
+  if (cond.includes("rain")) return "bi bi-cloud-rain-heavy";
+  if (cond.includes("drizzle")) return "bi bi-cloud-drizzle";
+  if (cond.includes("snow")) return "bi bi-snow2";
+  if (cond.includes("fog")) return "bi bi-cloud-fog2";
+  if (cond.includes("haze")) return "bi bi-cloud-haze";
+  if (cond.includes("smoke")) return "bi bi-cloud-fog";
+  if (cond.includes("mist")) return "bi bi-cloud-haze2";
+  if (cond.includes("sunny")) return "bi bi-brightness-high";
+  if (cond.includes("clear")) return "bi bi-brightness-alt-high";
+  if (cond.includes("cloud")) return "bi bi-clouds";
+  return "bi bi-brightness-high";
+}

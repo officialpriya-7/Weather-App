@@ -131,3 +131,29 @@ card {
 
 .current-left { flex: 1; text-align: left; }
 .current-right { min-width: 130px; text-align: right; }
+
+
+.forecast-title { font-size: 1rem; font-weight: 600; opacity: 0.95; margin-top:6px; }
+
+.forecast-grid {
+  margin-top: 8px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.forecast-box {
+  background: rgba(255, 255, 255, 0.108);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  min-height: 110px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+    box-shadow: 0 12px 40px rgba(239, 238, 238, 0.653);
+}
+

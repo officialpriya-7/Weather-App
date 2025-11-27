@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+      <div id="weatherBg" class="default-bg" aria-hidden="true"></div>
+
+      
+  <div id="uiMessage" class="ui-message hidden" role="status" aria-live="polite">
+    <div id="uiMessageText"></div>
+    <button id="uiMessageClose" aria-label="Close message">✕</button>
+  </div>
+
+  
+  <div id="extremeAlert" class="extreme-alert hidden" role="alert">
+    <div id="extremeText"></div>
+    <button id="extremeClose" aria-label="Dismiss extreme alert">✕</button>
+  </div>  
+
+  <main class="app-wrap" role="main">
+    <div class="card">
+
+      <header class="card-header">
+        <h1 class="app-title">Weather Forecast</h1>
+      </header>
+
+      </div>
+      </main>
+
+  <script src="app.js" defer></script>
+
+</body>
+</html>

@@ -154,4 +154,14 @@ function setBgForCondition(cond) {
   else if (c.includes("sunny")) weatherBg.classList.add("sunnuy");
 }
 
+searchBtn.addEventListener("click", doSearch);
+searchInput.addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
+
+function doSearch() {
+  const city = searchInput.value.trim();
+  if (!city) { showUIMessage("Search is empty — enter a city name"); return; }
+  fetchWeatherByCity(city);
+  saveRecent(city);
+}
+
 

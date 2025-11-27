@@ -186,3 +186,22 @@ card {
 
 .card-footer { text-align: center; opacity: 0.85; font-size: 13px; margin-top: 8px; }
 
+
+@media (max-width: 880px) {
+  .card { max-width: 720px; padding: 16px; }
+  .forecast-grid { grid-template-columns: repeat(2, 1fr); }
+  .current-right { min-width: 110px; }
+}
+@media (max-width: 520px) {
+  .card { padding: 12px; gap: 10px; }
+  .controls { justify-content: space-between; }
+  .current-right { text-align: left; min-width: auto; }
+  .forecast-grid { grid-template-columns: repeat(2, 1fr); }
+  .app-title { font-size: 1.3rem; }
+  .btn { padding: 9px 10px; font-size: 14px; }
+}
+@media (max-width: 360px) {
+  .forecast-grid { grid-template-columns: 1fr; }
+  #searchInput { font-size: 14px; padding: 10px; }
+}
+

@@ -233,3 +233,79 @@ locationBtn.addEventListener("click", () => {
 });
 
 
+function renderCurrent(data) {
+  if (!data || !data.main) return;
+  const tempC = data.main.temp;
+  const tempShown = isF ? ((tempC * 9/5) + 32).toFixed(1) + " °F" : tempC.toFixed(1) + " °C";
+
+  const cond = data.weather[0].main;
+  const desc = data.weather[0].description;
+
+  currentWeather.classList.remove("hidden");
+  currentWeather.innerHTML = `
+    <div class="current-left">
+      <div style="font-weight:700;font-size:18px">${data.name}</div>
+      <div style="font-size:28px;font-weight:700;margin-top:6px">
+        <i class="bi bi-thermometer-half"></i> ${tempShown}
+      </div>
+      <div style="opacity:.85;margin-top:6px;text-transform:capitalize">
+        <i class="${getWeatherIcon(cond)}" style="font-size:20px"></i> ${cond} — ${desc}
+      </div>
+    </div>
+    <div class="current-right">
+      <div style="margin-bottom:6px"><i class="bi bi-wind"></i> ${data.wind.speed} m/s</div>
+      <div><i class="bi bi-moisture"></i> ${data.main.humidity}%</div>
+    </div>
+  `;
+}
+
+
+// Render forecast :
+
+function renderForecast(list) {
+  forecastContainer.innerHTML = "";
+  if (!Array.isArray(list) || !list.length) return;
+
+  const days = {};
+
+  list.forEach(item => {
+    const date = item.dt_txt.split(" ")[0];
+    if (!days[date]) days[date] = [];
+    days[date].push(item);
+  });
+
+  const dayKeys = Object.keys(days).slice(0, 5);
+
+  dayKeys.forEach(key => {
+    const items = days[key];
+    let rep = items[0];
+    for (let it of items) {
+      if (it.dt_txt.includes("12:00:00")) { rep = it; break; }
+    }
+
+    const dateLabel = new Date(key).toLocaleDateString();
+    const tempC = rep.main.temp.toFixed(1);
+    const weatherMain = rep.weather[0].main;
+    const wind = rep.wind.speed;
+    const hum = rep.main.humidity;
+
+    const card = document.createElement("div");
+    card.className = "forecast-box";
+
+    card.innerHTML = `
+        <i class="${getWeatherIcon(weatherMain)}" style="font-size:32px;margin-bottom:6px"></i>
+        <div style="font-weight:600">${dateLabel}</div>
+        <div style="text-transform:capitalize;opacity:.95">${weatherMain}</div>
+        <div style="font-weight:700;font-size:16px">
+          <i class="bi bi-thermometer-half"></i> ${tempC} °C
+        </div>
+        <div style="opacity:.9">
+          <i class="bi bi-wind"></i> ${wind} m/s &nbsp; • &nbsp;
+          <i class="bi bi-moisture"></i> ${hum}%
+        </div>
+    `;
+
+    forecastContainer.appendChild(card);
+  });
+}
+

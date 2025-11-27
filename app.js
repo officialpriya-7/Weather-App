@@ -107,3 +107,10 @@ document.addEventListener("click", (e) => {
     hideRecent();
   }
 });
+
+unitToggle.addEventListener("change", () => {
+  isF = unitToggle.checked;
+  unitLabel.textContent = isF ? "°F" : "°C";
+  if (lastData) renderCurrent(lastData);
+});
+

@@ -1,4 +1,8 @@
+// API Key :
+
 const API_KEY = "MY_API_KEY";
+
+// Elements :
 
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
@@ -21,6 +25,9 @@ const recentToggle = document.getElementById("recentToggle"); // ⬅️ NEW
 let isF = false;
 let lastData = null;
 
+
+// UI helpers :
+
 function showUIMessage(text = "", timeout = 3500) {
   if (!uiMessage) return;
   uiMessageText.textContent = text;
@@ -40,6 +47,9 @@ function hideExtremeAlert() {
   extremeAlert.classList.add("hidden");
 }
 if (extremeClose) extremeClose.addEventListener("click", hideExtremeAlert);
+
+
+// Recent searches :
 
 function getRecent() {
   return JSON.parse(localStorage.getItem("recent_searches") || "[]");
@@ -108,11 +118,17 @@ document.addEventListener("click", (e) => {
   }
 });
 
+
+// Unit toggle :
+
 unitToggle.addEventListener("change", () => {
   isF = unitToggle.checked;
   unitLabel.textContent = isF ? "°F" : "°C";
   if (lastData) renderCurrent(lastData);
 });
+
+
+// Weather icon :
 
 function getWeatherIcon(cond) {
   cond = cond.toLowerCase();
@@ -130,6 +146,9 @@ function getWeatherIcon(cond) {
   if (cond.includes("cloud")) return "bi bi-clouds";
   return "bi bi-brightness-high";
 }
+
+
+// Background control :
 
 function setBgForCondition(cond) {
   weatherBg.classList.remove(
@@ -154,6 +173,9 @@ function setBgForCondition(cond) {
   else if (c.includes("sunny")) weatherBg.classList.add("sunnuy");
 }
 
+
+// Search logic :
+
 searchBtn.addEventListener("click", doSearch);
 searchInput.addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
 
@@ -163,6 +185,9 @@ function doSearch() {
   fetchWeatherByCity(city);
   saveRecent(city);
 }
+
+
+// Fetch :
 
 async function fetchWeatherByCity(city) {
   try {
@@ -192,6 +217,9 @@ async function fetchWeatherByCity(city) {
     showUIMessage("Network error while fetching weather");
   }
 }
+
+
+// Current location :
 
 locationBtn.addEventListener("click", () => {
   if (!navigator.geolocation) { showUIMessage("Geolocation not supported"); return; }
@@ -232,6 +260,8 @@ locationBtn.addEventListener("click", () => {
   { timeout: 10000 });
 });
 
+
+// Render current :
 
 function renderCurrent(data) {
   if (!data || !data.main) return;
@@ -308,6 +338,9 @@ function renderForecast(list) {
     forecastContainer.appendChild(card);
   });
 }
+
+
+// Init :
 
 (function init() {
   const recent = getRecent();

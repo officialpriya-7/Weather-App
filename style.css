@@ -1,6 +1,10 @@
-*{ box-sizing: border-box; margin: 0; padding: 0; }
+/*  Reset */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #fff; }
 
+
+/*  Background (default and weather classes) */
 
 #weatherBg {
   position: fixed;
@@ -11,11 +15,33 @@ html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe U
   transition: background-image .6s ease, filter .6s ease;
   filter: brightness(.92);
 }
+
+
+/* Default (permanent) background image - local path */
+
 .default-bg {
   background-image: url("weather images/default.png");
 }
 
 
+/* Weather-specific override classes (local images) */
+
+.sunny  { background-image: url("weather images/sunny.png"); }
+.clouds { background-image: url("weather images/cloud.png"); }
+.rain   { background-image: url("weather images/rain.png"); }
+.snow   { background-image: url("weather images/snow.png"); }
+.storm  { background-image: url("weather images/storm.png"); }
+.fog    { background-image: url("weather images/fog.png"); }
+.haze { background-image: url("weather images/haze.jpg");}
+.mist { background-image: url("weather images/mist.jpg");}
+.clear{ background-image: url("weather images/clear.jpg");}
+.smoke{ background-image: url("weather images/smoke");}
+.thunder{background-image: url("weather images/thunder.jpg");}
+.drizzle  { background-image: url("weather images/drizzle.jpg");}
+
+
+
+/* App wrapper - center vertically & horizontally */
 
 .app-wrap {
   min-height: 100vh;
@@ -25,7 +51,9 @@ html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe U
   padding: 24px;
 }
 
-card {
+/* Card */
+
+.card {
   width: 100%;
   max-width: 980px;
   background: rgba(0, 2, 7, 0.415);
@@ -38,7 +66,13 @@ card {
   gap: 14px;
 }
 
+
+/* Header */
+
 .app-title { font-size: 1.6rem; text-align: center; font-weight: 700; letter-spacing: 0.2px; }
+
+
+/* Search row layout */
 
 .search-row {
   display: grid;
@@ -46,6 +80,9 @@ card {
   grid-template-columns: 1fr;
   align-items: start;
 }
+
+
+/* Input & Recent list */
 
 .search-input-wrap { position: relative; }
 
@@ -59,6 +96,9 @@ card {
   color: #fff;
   font-size: 15px;
 }
+
+
+/* Recent Dropdown (localStorage recent searches) */
 
 .hidden { display: none !important; }
 
@@ -96,6 +136,9 @@ card {
   opacity: 1;
 }
 
+
+/* Controls */
+
 .controls {
   display: flex;
   gap: 8px;
@@ -110,11 +153,14 @@ card {
 .btn:hover { transform: translateY(-2px); background-color: rgba(7, 7, 86, 0.325);}
 .loc-btn { display: inline-flex; align-items:center; gap:8px; }
 
+/* Unit Toggle */
 
 .unit-toggle { display: inline-flex; align-items: center; gap:8px; padding-left: 6px; }
 .unit-toggle input { width: 0; height: 0; opacity: 0; }
 .unit-toggle span { background: rgba(255,255,255,0.06); padding: 6px 8px; border-radius: 10px; font-weight:600; }
 
+
+/* Current Weather */
 
 .current-weather {
   display: flex;
@@ -132,6 +178,8 @@ card {
 .current-left { flex: 1; text-align: left; }
 .current-right { min-width: 130px; text-align: right; }
 
+
+/* Forecast Grid */
 
 .forecast-title { font-size: 1rem; font-weight: 600; opacity: 0.95; margin-top:6px; }
 
@@ -157,6 +205,8 @@ card {
     box-shadow: 0 12px 40px rgba(239, 238, 238, 0.653);
 }
 
+
+/* Popup & Extreme */
 
 .ui-message {
   position: fixed;
@@ -184,8 +234,13 @@ card {
 }
 .extreme-alert.hidden { display:none; }
 
+
+/* footer */
+
 .card-footer { text-align: center; opacity: 0.85; font-size: 13px; margin-top: 8px; }
 
+
+/* Responsive */
 
 @media (max-width: 880px) {
   .card { max-width: 720px; padding: 16px; }
@@ -204,4 +259,3 @@ card {
   .forecast-grid { grid-template-columns: 1fr; }
   #searchInput { font-size: 14px; padding: 10px; }
 }
-

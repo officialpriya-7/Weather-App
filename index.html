@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Weather Forecast App</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-      <link rel="icon" type="image/png" href="weather images/favicon.png" />
 
-    <link rel="stylesheet" href="style.css" />
 
-</head>
+  <!-- Bootstrap Icons CDN (Required For SVG Icon Classes) -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+  <!-- Favicon -->
+
+  <link rel="icon" type="image/png" href="weather images/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+ </head>
 <body>
-      <div id="weatherBg" class="default-bg" aria-hidden="true"></div>
 
-      
+
+  <!-- Background Layer (Default + Weather Classes Override It) -->
+
+  <div id="weatherBg" class="default-bg" aria-hidden="true"></div>
+
+
+  <!--  UI Message (Errors / Info) -->
+
   <div id="uiMessage" class="ui-message hidden" role="status" aria-live="polite">
     <div id="uiMessageText"></div>
     <button id="uiMessageClose" aria-label="Close message">✕</button>
   </div>
 
-  
+
+  <!-- Extreme Temperature Banner -->
+
   <div id="extremeAlert" class="extreme-alert hidden" role="alert">
     <div id="extremeText"></div>
     <button id="extremeClose" aria-label="Dismiss extreme alert">✕</button>
-  </div>  
+  </div>
+
+
+  <!-- App Container (Centered Both Vertically & Horizontally) -->
 
   <main class="app-wrap" role="main">
     <div class="card">
@@ -32,6 +49,9 @@
         <h1 class="app-title">Weather Forecast</h1>
       </header>
 
+
+      <!-- Search Bar & Recent Dropdown-->
+
       <section class="search-row" aria-label="Search weather">
         <div class="search-input-wrap">
           <input id="searchInput" type="text" placeholder="Enter city name" aria-label="Search city" />
@@ -39,7 +59,12 @@
           <div id="recentList" class="recent-list hidden" aria-label="Recent searches"></div>
           <i id="recentToggle" class="bi bi-chevron-down recent-toggle-icon"></i>
 
-           <div class="controls">
+        </div>
+
+
+        <!-- Search Button ,Current Location Button & Toggel Unit--->
+
+        <div class="controls">
           <button id="searchBtn" class="btn primary">Search</button>
           <button id="locationBtn" class="btn">📍 Current Location</button>
 
@@ -50,22 +75,28 @@
         </div>
       </section>
 
+
+      <!-- Current Weather (Today) -->
+
       <section id="currentWeather" class="current-weather hidden" aria-live="polite"></section>
+
+
+      <!-- 5-Day Forecast -->
 
       <section>
         <h2 class="forecast-title">5-Day Forecast</h2>
         <div id="forecast" class="forecast-grid" aria-live="polite"></div>
       </section>
 
-       <footer class="card-footer">
-       <small> @Data provided by OpenWeatherMap</small>
-      </footer>
 
-        </div>
-      </div>
-      </main>
+<!-- Footer-->
+
+      <footer class="card-footer">
+   <small> @Data provided by OpenWeatherMap</small>
+      </footer>
+    </div>
+  </main>
 
   <script src="app.js" defer></script>
-
 </body>
 </html>

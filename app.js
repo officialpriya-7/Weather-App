@@ -41,3 +41,69 @@ function hideExtremeAlert() {
 }
 if (extremeClose) extremeClose.addEventListener("click", hideExtremeAlert);
 
+function getRecent() {
+  return JSON.parse(localStorage.getItem("recent_searches") || "[]");
+}
+
+function saveRecent(city) {
+  if (!city) return;
+  let arr = getRecent();
+  arr = arr.filter(c => c.toLowerCase() !== city.toLowerCase());
+  arr.unshift(city);
+  if (arr.length > 8) arr = arr.slice(0, 8);
+  localStorage.setItem("recent_searches", JSON.stringify(arr));
+}
+
+// Show dropdown
+function showRecent() {
+  const arr = getRecent();
+  if (!arr.length) {
+    recentList.classList.add("hidden");
+    return;
+  }
+
+  recentList.innerHTML = "";
+  arr.forEach(city => {
+    const d = document.createElement("div");
+    d.textContent = city;
+    d.addEventListener("click", () => {
+      searchInput.value = city;
+      hideRecent();
+      doSearch();
+    });
+    recentList.appendChild(d);
+  });
+
+  recentList.classList.remove("hidden");
+  recentToggle.classList.add("rotated");   // ⬅️ rotate arrow
+}
+
+// Hide dropdown
+function hideRecent() {
+  recentList.classList.add("hidden");
+  recentToggle.classList.remove("rotated"); // ⬅️ remove rotation
+}
+
+// Toggle via icon click
+recentToggle.addEventListener("click", () => {
+  if (recentList.classList.contains("hidden")) showRecent();
+  else hideRecent();
+});
+
+// Input focus open
+searchInput.addEventListener("focus", showRecent);
+
+// typing → hide
+searchInput.addEventListener("input", () => {
+  if (searchInput.value.trim() === "") showRecent();
+  else hideRecent();
+});
+
+// click outside → hide
+document.addEventListener("click", (e) => {
+  if (!recentList.contains(e.target) && 
+      e.target !== searchInput &&
+      e.target !== recentToggle) {
+    hideRecent();
+  }
+});

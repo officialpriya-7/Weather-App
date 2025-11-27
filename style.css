@@ -24,3 +24,19 @@ html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe U
   justify-content: center;
   padding: 24px;
 }
+
+card {
+  width: 100%;
+  max-width: 980px;
+  background: rgba(0, 2, 7, 0.415);
+  border: 2px solid black;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(239, 238, 238, 0.615);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.app-title { font-size: 1.6rem; text-align: center; font-weight: 700; letter-spacing: 0.2px; }
+

@@ -309,3 +309,7 @@ function renderForecast(list) {
   });
 }
 
+(function init() {
+  const recent = getRecent();
+  if (recent.length) searchInput.placeholder = `Last: ${recent[0]}`;
+})();

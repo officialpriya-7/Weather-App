@@ -184,4 +184,5 @@ card {
 }
 .extreme-alert.hidden { display:none; }
 
+.card-footer { text-align: center; opacity: 0.85; font-size: 13px; margin-top: 8px; }
 

@@ -164,4 +164,72 @@ function doSearch() {
   saveRecent(city);
 }
 
+async function fetchWeatherByCity(city) {
+  try {
+    showUIMessage("Loading...", 1000);
+
+    const curRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`);
+    if (!curRes.ok) { showUIMessage("City not found. Try another name."); return; }
+
+    const cur = await curRes.json();
+    lastData = cur;
+
+    setBgForCondition(cur.weather[0].main);
+    renderCurrent(cur);
+
+    if (cur.main.temp >= 40) showExtremeAlert(`High temperature ${cur.main.temp.toFixed(1)}°C — stay hydrated!`);
+    else if (cur.main.temp <= -10) showExtremeAlert(`Very low temperature ${cur.main.temp.toFixed(1)}°C — stay warm!`);
+    else hideExtremeAlert();
+
+    const fRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`);
+    if (!fRes.ok) { showUIMessage("Forecast not available"); return; }
+
+    const forecastData = await fRes.json();
+    renderForecast(forecastData.list);
+  } 
+  catch (err) {
+    console.error(err);
+    showUIMessage("Network error while fetching weather");
+  }
+}
+
+locationBtn.addEventListener("click", () => {
+  if (!navigator.geolocation) { showUIMessage("Geolocation not supported"); return; }
+
+  showUIMessage("Getting location...", 1200);
+
+  navigator.geolocation.getCurrentPosition(async (pos) => {
+    try {
+      const lat = pos.coords.latitude, lon = pos.coords.longitude;
+
+      const curRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+      if (!curRes.ok) { showUIMessage("Could not fetch location weather"); return; }
+
+      const cur = await curRes.json();
+      lastData = cur;
+
+      setBgForCondition(cur.weather[0].main);
+      renderCurrent(cur);
+
+      if (cur.main.temp >= 40) showExtremeAlert(`High temperature ${cur.main.temp.toFixed(1)}°C — stay hydrated!`);
+      else if (cur.main.temp <= -10) showExtremeAlert(`Very low temperature ${cur.main.temp.toFixed(1)}°C — stay warm!`);
+      else hideExtremeAlert();
+
+      const fRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+      if (fRes.ok) {
+        const forecastData = await fRes.json();
+        renderForecast(forecastData.list);
+      }
+    } 
+    catch (err) {
+      console.error(err);
+      showUIMessage("Error fetching location weather");
+    }
+  }, 
+  (err) => {
+    showUIMessage("Could not get location: " + err.message);
+  },
+  { timeout: 10000 });
+});
+
 
